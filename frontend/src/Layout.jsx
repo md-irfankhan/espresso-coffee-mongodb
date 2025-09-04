@@ -1,5 +1,6 @@
 import { Outlet } from "react-router";
 import Nav from "./components/Nav/Nav";
+import Footer from "./components/Footer/Footer";
 
 
 const Layout = () => {
@@ -12,6 +13,7 @@ const Layout = () => {
                <Outlet></Outlet>
             </section>
             <footer>
+                <Footer></Footer>
 
             </footer>
             
