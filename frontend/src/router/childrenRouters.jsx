@@ -1,7 +1,9 @@
+import Home from "../components/Home/Home";
+
 const childrenRouter=[
     {
         path:"/",
-        element:"Hello World"
+        element:<Home></Home>
     }
 ]
 export default childrenRouter;
