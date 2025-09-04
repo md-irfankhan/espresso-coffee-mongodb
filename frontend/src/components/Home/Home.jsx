@@ -1,5 +1,6 @@
 import Banner from "../Banner/Banner";
 import Features from "../Features/Features";
+import Instagram from "../Instagram/Instagram";
 
 
 const Home = () => {
@@ -10,6 +11,9 @@ const Home = () => {
             </header>
             <section>
                 <Features></Features>
+            </section>
+            <section>
+                <Instagram></Instagram>
             </section>
             
         </div>
