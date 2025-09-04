@@ -1,4 +1,5 @@
 import Banner from "../Banner/Banner";
+import Features from "../Features/Features";
 
 
 const Home = () => {
@@ -7,6 +8,9 @@ const Home = () => {
             <header>
                 <Banner></Banner>
             </header>
+            <section>
+                <Features></Features>
+            </section>
             
         </div>
     );
