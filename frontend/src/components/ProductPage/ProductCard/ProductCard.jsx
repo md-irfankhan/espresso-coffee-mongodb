@@ -2,6 +2,7 @@ import Coffee from '../../../assets/1.png'
 import { FaEye } from 'react-icons/fa';
 import { BiSolidPencil } from 'react-icons/bi';
 import { MdDelete } from 'react-icons/md';
+import { Link } from 'react-router';
 const ProductCard = ({data}) => {
     console.log(data);
     const {name,chef,photo,_id}=data
@@ -19,7 +20,7 @@ const ProductCard = ({data}) => {
             </div>
             <div className='flex flex-col gap-1.5 justify-between'>
                 <div>
-                    <button className='p-2 rounded bg-[#D2B48C]'><FaEye className='text-white'></FaEye></button>
+                    <button  className='p-2 rounded bg-[#D2B48C]'><Link to={`/details/${_id}`}><FaEye className='text-white'></FaEye></Link></button>
                 </div>
                 <div>
                     <button className='p-2 rounded bg-[#3C393B]'><BiSolidPencil className='text-white'></BiSolidPencil></button>
