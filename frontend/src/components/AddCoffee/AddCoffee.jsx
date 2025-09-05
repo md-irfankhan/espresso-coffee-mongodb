@@ -1,9 +1,35 @@
 import { Link } from 'react-router';
 import bg11 from '../../assets/more/11.png'
 import { FaLongArrowAltLeft } from 'react-icons/fa';
-
+import swal from 'sweetalert';
 
 const AddCoffee = () => {
+    const handleAdd =(e)=>{
+        e.preventDefault();
+        const form=e.target
+        const name=form.name.value;
+        const chef=form.chef.value;
+        const suplier=form.suplier.value;
+        const taste=form.taste.value;
+        const category=form.category.value;
+        const details=form.details.value;
+        const cofeeDetails={name,chef,suplier,taste,category,details}
+        fetch('http://localhost:3000/create',{
+            method:'POST',
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(cofeeDetails)
+        }).then(res=>res.json()).then(data=>{
+            console.log(data);
+            if(data.insertedId){
+                swal("Good job!", "You clicked the button!", "success");
+                form.reset()
+            }
+            
+        })
+        
+    }
     return (
         <div style={{
             backgroundImage: `url(${bg11})`,
@@ -18,7 +44,7 @@ const AddCoffee = () => {
                         <p className='font-montserrat'>It is a long established fact that a reader will be distraceted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.</p>
                     </div>
 
-                    <form className='grid grid-cols-1 lg:grid-cols-2 place-items-center place-content-center px-11 lg:px-0   gap-2.5'>
+                    <form onSubmit={handleAdd} className='grid grid-cols-1 lg:grid-cols-2 place-items-center place-content-center px-11 lg:px-0   gap-2.5'>
                         
                             <div className='flex flex-col gap-1 w-full'>
                                 <label className='level font-bold'>Name</label>
