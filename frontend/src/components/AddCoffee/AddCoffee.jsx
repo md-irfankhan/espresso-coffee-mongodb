@@ -13,7 +13,8 @@ const AddCoffee = () => {
         const taste=form.taste.value;
         const category=form.category.value;
         const details=form.details.value;
-        const cofeeDetails={name,chef,suplier,taste,category,details}
+        const photo=form.photo.value
+        const cofeeDetails={name,chef,suplier,taste,category,details,photo}
         fetch('http://localhost:3000/create',{
             method:'POST',
             headers:{

@@ -7,6 +7,7 @@ import UpdateCoffee from "../components/UpdateCoffee/UpdateCoffee";
 const childrenRouter=[
     {
         path:"/",
+        loader:()=>fetch('http://localhost:3000/'),
         element:<Home></Home>
     },
     {

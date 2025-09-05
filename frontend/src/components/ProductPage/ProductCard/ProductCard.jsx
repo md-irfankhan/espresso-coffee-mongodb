@@ -2,16 +2,18 @@ import Coffee from '../../../assets/1.png'
 import { FaEye } from 'react-icons/fa';
 import { BiSolidPencil } from 'react-icons/bi';
 import { MdDelete } from 'react-icons/md';
-const ProductCard = () => {
+const ProductCard = ({data}) => {
+    console.log(data);
+    const {name,chef,photo,_id}=data
     return (
         <div className="flex items-center bg-[#D2B48C]/[0.2] py-5 px-4 rounded">
             <div>
-                <img className='h-[200px] w-[130px]' src={Coffee} alt="" />
+                <img className='h-[200px] w-[130px]' src={photo} alt="" />
 
             </div>
             <div className="flex-1 flex flex-col justify-between">
-                <p className="font-montserrat"><span className='font-bold'>Name:</span> Americano Coffee</p>
-                <p className="font-montserrat"><span className='font-bold'>Chef:</span> Mr. Putin</p>
+                <p className="font-montserrat"><span className='font-bold'>Name:</span> {name} </p>
+                <p className="font-montserrat"><span className='font-bold'>Chef:</span>{chef} </p>
                 <p className="font-montserrat"><span className='font-bold'>Price:</span> 800 Taka</p>
 
             </div>
