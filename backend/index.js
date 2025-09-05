@@ -29,31 +29,39 @@ async function run() {
     const myDB = client.db("espressoCoffee");
     const myColl = myDB.collection("coffeeStore");
 
-    app.get('/', async(req, res) => {
+    app.get('/', async (req, res) => {
       const data = myColl.find()
-      const result=await data.toArray()
+      const result = await data.toArray()
       console.log(result);
-      
+
       res.send(result)
     })
-    app.get('/find/:id',async(req,res)=>{
-      const id =req.params.id;
-      const query={_id:new ObjectId(id)}
-      const data=await myColl.findOne(query);
+    app.get('/find/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) }
+      const data = await myColl.findOne(query);
       console.log(id);
-      
+
+      res.send(data)
+    })
+    app.delete('/delete/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) }
+      const data = await myColl.deleteOne(query);
+
+
       res.send(data)
     })
 
 
-    
 
-    app.post('/create',async(req,res)=>{
-      const reqBody=req.body;
-      
+
+    app.post('/create', async (req, res) => {
+      const reqBody = req.body;
+
       const result = await myColl.insertOne(reqBody);
       res.send(result)
-      
+
     })
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });

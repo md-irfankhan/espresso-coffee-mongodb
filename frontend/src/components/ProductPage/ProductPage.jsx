@@ -23,7 +23,7 @@ const ProductPage = () => {
             <div className='mt-4 max-w-[1250px] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-2'>
 
                 {
-                    coffeeData.map((data)=><ProductCard key={data._id} data={data}></ProductCard>)
+                    coffeeData.map((data)=><ProductCard key={data._id} coffeeData={coffeeData} setCoffeeData={setCoffeeData} data={data}></ProductCard>)
                 }
                 
             </div>

@@ -1,11 +1,44 @@
-import Coffee from '../../../assets/1.png'
+import swal from 'sweetalert';
 import { FaEye } from 'react-icons/fa';
 import { BiSolidPencil } from 'react-icons/bi';
 import { MdDelete } from 'react-icons/md';
 import { Link } from 'react-router';
-const ProductCard = ({data}) => {
+const ProductCard = ({ data,coffeeData,setCoffeeData }) => {
     console.log(data);
-    const {name,chef,photo,_id}=data
+    const { name, chef, photo, _id } = data;
+
+
+    const handleDelete = (id) => {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    fetch(`http://localhost:3000/delete/${id}`, {
+                        method: 'DELETE'
+                    }).then(res => res.json()).then(data => {
+                        
+                        if (data.deletedCount > 0) {
+                            const filtered=coffeeData.filter(Cdata=>Cdata._id!=_id)
+                            setCoffeeData(filtered)
+                            swal("Poof! Your coffee has been deleted!", {
+                                icon: "success",
+                            });
+
+                        }
+
+                    })
+
+                } else {
+                    swal("Your coffee is safe!");
+                }
+            });
+
+    }
     return (
         <div className="flex items-center bg-[#D2B48C]/[0.2] py-5 px-4 rounded">
             <div>
@@ -20,17 +53,17 @@ const ProductCard = ({data}) => {
             </div>
             <div className='flex flex-col gap-1.5 justify-between'>
                 <div>
-                    <button  className='p-2 rounded bg-[#D2B48C]'><Link to={`/details/${_id}`}><FaEye className='text-white'></FaEye></Link></button>
+                    <button className='p-2 rounded bg-[#D2B48C]'><Link to={`/details/${_id}`}><FaEye className='text-white'></FaEye></Link></button>
                 </div>
                 <div>
                     <button className='p-2 rounded bg-[#3C393B]'><BiSolidPencil className='text-white'></BiSolidPencil></button>
                 </div>
                 <div>
-                    <button className='p-2 rounded bg-[#EA4744]'><MdDelete className='text-white'></MdDelete></button>
+                    <button onClick={() => handleDelete(_id)} className='p-2 rounded bg-[#EA4744]'><MdDelete className='text-white'></MdDelete></button>
                 </div>
 
             </div>
-            
+
         </div>
     );
 };
