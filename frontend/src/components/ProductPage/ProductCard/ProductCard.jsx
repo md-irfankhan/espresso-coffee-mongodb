@@ -56,7 +56,7 @@ const ProductCard = ({ data,coffeeData,setCoffeeData }) => {
                     <button className='p-2 rounded bg-[#D2B48C]'><Link to={`/details/${_id}`}><FaEye className='text-white'></FaEye></Link></button>
                 </div>
                 <div>
-                    <button className='p-2 rounded bg-[#3C393B]'><BiSolidPencil className='text-white'></BiSolidPencil></button>
+                    <button className='p-2 rounded bg-[#3C393B]'><Link to={`/update/${_id}`}><BiSolidPencil className='text-white'></BiSolidPencil></Link></button>
                 </div>
                 <div>
                     <button onClick={() => handleDelete(_id)} className='p-2 rounded bg-[#EA4744]'><MdDelete className='text-white'></MdDelete></button>

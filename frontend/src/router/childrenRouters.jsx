@@ -20,7 +20,8 @@ const childrenRouter=[
         element:<AddCoffee></AddCoffee>
     },
     {
-        path:'/update',
+        path:'/update/:id',
+        loader:({params})=>fetch(`http://localhost:3000/find/${params.id}`),
         element:<UpdateCoffee></UpdateCoffee>
     },
     {

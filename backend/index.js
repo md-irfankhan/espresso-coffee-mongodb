@@ -52,6 +52,26 @@ async function run() {
 
       res.send(data)
     })
+    app.put('/update',async(req,res)=>{
+      const data=req.body;
+      const query={_id: new ObjectId(data._id)}
+      const options = { upsert: true };
+      const update={
+        $set:{
+          name:data.name,
+          chef:data.chef,
+          suplier:data.suplier,
+          taste:data.taste,
+          category:data.category,
+          details:data.details,
+          photo:data.photo
+        }
+      }
+      const result = await myColl.updateOne(query, update, options);
+      console.log(result);
+      res.send(result)
+      
+    })
 
 
 
