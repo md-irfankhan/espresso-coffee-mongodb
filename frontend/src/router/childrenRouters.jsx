@@ -3,6 +3,7 @@ import Details from "../components/Details/Details";
 import Error from "../components/Error/Error";
 import Home from "../components/Home/Home";
 import Login from "../components/Login/Login";
+import SignUp from "../components/SignUp/SignUp";
 import UpdateCoffee from "../components/UpdateCoffee/UpdateCoffee";
 
 const childrenRouter=[
@@ -28,6 +29,11 @@ const childrenRouter=[
     {
         path:'/login',
         element:<Login></Login>
+
+    },
+    {
+        path:'/register',
+        element:<SignUp></SignUp>
 
     },
     {
