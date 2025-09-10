@@ -4,7 +4,17 @@ import Logo from '../../assets/more/logo1.png'
 import { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 const Nav = () => {
-    const {user}=useContext(AuthContext)
+    const {user,signoutUser}=useContext(AuthContext)
+    const handleSignOut=()=>{
+        signoutUser().then(res=>{
+            console.log(res);
+            
+        }).catch(err=>{
+            console.log(err);
+            
+        })
+
+    }
     return (
         <div style={{
             backgroundImage:`url(${navBg})`,
@@ -18,7 +28,8 @@ const Nav = () => {
             <p className='font-rancho text-[37px]'><Link to={'/'}>Espresso Emporium</Link></p>
             </div>
             <div>
-                <button className="bg-[#E3B577]  text-[18px] font-rancho py-1 px-2.5 rounded text-white text-shadow-black text-shadow-md border-2 border-black"><Link to={'/login'}>Login</Link></button>
+                {user ? <button onClick={handleSignOut} className="bg-[#E3B577]  text-[18px] font-rancho py-1 px-2.5 rounded text-white text-shadow-black text-shadow-md border-2 border-black"><Link>SignOut</Link></button>:<button  className="bg-[#E3B577]  text-[18px] font-rancho py-1 px-2.5 rounded text-white text-shadow-black text-shadow-md border-2 border-black"><Link to={'/login'}>Login</Link></button>}
+              
             </div>
         </div>
     );

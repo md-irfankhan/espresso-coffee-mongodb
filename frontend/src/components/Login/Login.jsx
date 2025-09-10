@@ -1,9 +1,15 @@
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { Link, Navigate, useLocation, useNavigate } from "react-router";
 
 
 const Login = () => {
-    const {loginUser}=useContext(AuthContext);
+    const location =useLocation()
+    const navigate=useNavigate()
+    const {loginUser,user}=useContext(AuthContext);
+    if(user){
+        return <Navigate to={location.state?location.state:'/'}></Navigate>
+    }
     const handleLogin=(e)=>{
         e.preventDefault();
         const form=e.target;
@@ -11,6 +17,7 @@ const Login = () => {
         const password=form.password.value;
         loginUser(email,password).then(res=>{
             console.log(res);
+            navigate(location.state?location.state:'/');
             
         }).catch(err=>{
             console.log(err);
@@ -29,8 +36,11 @@ const Login = () => {
 
                     <label className="label">Password</label>
                     <input name="password" type="password" className="input" placeholder="Password" />
+                    <div>
+                        <p>If you're not registered? <Link className="text-orange-400" state={location.state?location.state:'/'} to={'/register'}>Register</Link></p>
+                    </div>
 
-                    <input className="input text-center  w-full bg-[#E3B577]  text-[18px] font-rancho mt-4" value={'Login'}></input>
+                    <input type="submit" className="input text-center  w-full bg-[#E3B577]  text-[18px] font-rancho mt-4" value={'Login'}></input>
                 </fieldset>
             </form>
 
